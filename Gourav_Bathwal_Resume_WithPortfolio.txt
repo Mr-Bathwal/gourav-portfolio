@@ -1,0 +1,67 @@
+Gourav Kumar Bathwal
+
+AI Analyst Intern | Full-Stack Developer | B.Tech, IIT Hyderabad
+
+bt23btech11008@iith.ac.in | +91 98351 33704 |
+
+| India
+
+SUMMARY
+
+AI Analyst Intern at EY building agentic AI systems with LangChain and LangGraph; full-stack developer (React, Node.js, Next.js) and blockchain/Web3 builder. B.Tech at IIT Hyderabad. 500+ competitive-programming problems solved and multiple national-hackathon products shipped.
+
+EDUCATION
+
+· IIT Hyderabad -- B.Tech, Biotechnology & Bioinformatics, CGPA 8.00 (2023 ­ 2027)
+· Mothers' International Academy -- Class XII (CBSE), 94.0% (2022) · Carmel School -- Class X (ICSE), 98.4% (2020)
+
+EXPERIENCE
+
+AI Analyst Intern, EY | Jun 2026 ­ Present · Build and ship agentic AI applications with LangChain and LangGraph, orchestrating multi-step LLM workflows on Groq inference.
+· Developed a Support Ticket Triage Agent and an IT Ops Assistant Hub that automate ticket classification, routing, and routine operations.
+· Applied tool-use, memory, and multi-agent design (DeepLearning.AI Agentic AI) to client-facing deliverables.
+
+Frontend & Full-Stack Developer Intern, Fletch Technologies Inc | Dec 2025 ­ May 2026 6-month Semester Internship -- Embedded Financial Services Distribution
+· Rebuilt the entire Fletch UI/UX and delivered full-stack features across React, Node.js, and Express.
+· Built reusable no-code widget components for Fletch's no-code platform, enabling non-technical users to assemble embedded financial-services workflows.
+· Designed and integrated REST APIs and third-party services for unified, automated business workflows.
+
+Software Engineering Co-op (Training), AlgoUniversity | Apr 2025 ­ Nov 2025 · Selected through a competitive 3-stage process for an intensive full-stack + DSA bootcamp.
+· Built production-style full-stack applications under daily, high-pressure problem-solving sprints.
+
+Internshala Student Partner (ISP), Campus Ambassador, IIT Hyderabad | Jun 2026 ­ Present · Selected as the official Face of Internshala for IIT Hyderabad under the Internshala Student Partner (ISP) programme.
+· Drive campus-wide awareness and student engagement for internships and skilling programs through on-ground and digital outreach.
+
+PROJECTS
+
+Axiom Trade Pulse Clone Links: github.com/Mr-Bathwal/Axiom-trade-pulse_Clone | youtube.com/watch?v=Xn2VcfuVOhE
+· Next.js, React, TypeScript, Tailwind -- engineered a real-time DeFi trading dashboard replicating Axiom's trading UX, with WebSocket-driven live market feeds, interactive data visualizations and charting, backend API integration, and a performance-optimized, mobile-first responsive UI.
+
+TicketVerse -- Decentralized NFT Ticketing (Avalanche) Link: github.com/Mr-Bathwal/Avalanche-Hacking
+· React, Node.js, Solidity smart contracts -- built a decentralized NFT ticketing platform on the Avalanche blockchain; smart contracts mint fraud-proof, traceable tickets and enforce transparent, royalty-aware resale across the entire ticket lifecycle, with on-chain ownership verification.
+
+Decentralized Identity (DID) App Link: github.com/Mr-Bathwal/Algorand_DID
+· Algorand, React, Node.js, IPFS -- developed a full-stack self-sovereign identity (SSI) system using zeroknowledge proofs (ZKPs) for privacy-preserving verification, on-chain credential anchoring via smart contracts, and decentralized document storage on IPFS, supporting multi-authority issuance.
+
+Renal Tumor Stage Predictor · Python, TensorFlow -- built an end-to-end deep-learning pipeline predicting renal-carcinoma stage from DICOM/NIfTI MRI volumes, with image normalization, augmentation, tumor segmentation, and feature extraction; validated against expert annotations in collaboration with medical experts.
+
+ACHIEVEMENTS
+· Avalanche National Hackathon, Draper House, Hyderabad (Oct 2025) -- selected to design, build, and pitch TicketVerse, a blockchain-powered, fraud-proof NFT ticketing platform, before a panel of industry judges.
+· Rise In National Hackathon, T-Hub, Bengaluru (Sep 2025) -- architected a privacy-first Decentralized Identity (DID) system leveraging zero-knowledge proofs, blockchain, and IPFS for multi-authority verifiable credentials.
+· Competitive Programming -- solved 500+ algorithmic problems across LeetCode and Codeforces, demonstrating strong data-structures and algorithm-design proficiency.
+TECHNICAL SKILLS
+· AI & Agentic Systems: LangChain, LangGraph, AI agents (multi-agent orchestration, tool use, RAG), Groq, n8n, Botpress, Cursor AI, Devin AI, workflow automation
+· Machine Learning: TensorFlow, scikit-learn, Random Forest, Logistic Regression, Gradient Boosting; medical imaging (DICOM/NIfTI, 3D Slicer)
+· Web Development: JavaScript, TypeScript, React.js, Next.js, Node.js, Express.js, Tailwind CSS, HTML5/CSS3, MongoDB (Mongoose), REST APIs
+· Blockchain & Web3: Solidity smart contracts, Avalanche, Algorand, IPFS, zero-knowledge proofs (ZKPs), NFTs, decentralized identity (DID)
+· Languages & DSA: C++ (500+ LeetCode / Codeforces problems), strong algorithmic design · Tools & Platforms: Git & GitHub, Vercel, WordPress, low-code & automation platforms · Soft Skills: Leadership, emotional intelligence, cross-functional collaboration, agile teamwork, adaptability under
+high-pressure deadlines
+POSITION OF RESPONSIBILITY
+· Sports Secretary, Dept. of Biotechnology (IIT-H) -- led logistics for the flagship Sports Day, coordinating 300+ participants across departments.
+· Marketing Manager, E-Cell (IIT-H) -- directed publicity for E-Summit and E-Merge, driving digital engagement and brand growth.
+· Alumni Outreach Manager (IIT-H) -- scaled alumni networks and managed Alumni Day 2025 as a highengagement, multi-generational event.
+· Event Manager & Vedic Science Club Coordinator (IIT-H) -- owned end-to-end execution of major campus events and curated cultural-tech programs for 100+ students.
+EXTRACURRICULAR
+· District-level athlete in Cricket & Chess; official college cricket team member (NSO ­ Cricket). · Multi-sport medalist with 3 podium finishes in cricket and athletics; active member, FITSOC Fitness Tribe.
+
+
