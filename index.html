@@ -1,51 +1,481 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gourav Kumar Bathwal — Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Gourav Bathwal — Software Developer · AI & Agents</title>
+<meta name="description" content="Gourav Bathwal — software developer & UI/UX enthusiast building AI agents that act on real systems, plus blockchain & identity experiences."/>
+<meta property="og:title" content="Gourav Bathwal — Software Developer · AI & Agents"/>
+<meta property="og:description" content="I build AI agents that act on real systems — and the interfaces that make them feel effortless."/>
+<meta property="og:type" content="website"/>
+<style>
+  :root{
+    --void:#08090f; --void2:#0b0c16; --panel:#0f1120;
+    --violet:#a78bfa; --blue:#60a5fa; --teal:#5eead4;
+    --text:#c9cee0; --head:#eef2ff; --muted:#828aa3; --line:rgba(255,255,255,.08);
+    --card:rgba(255,255,255,.035); --card-hi:rgba(255,255,255,.065);
+    --sans:'Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+    --mono:ui-monospace,'Cascadia Code','JetBrains Mono',Consolas,monospace;
+    --max:1120px;
+    --shadow:0 30px 70px -30px rgba(0,0,0,.75);
+    --glow-v:0 0 40px rgba(167,139,250,.35);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--void);color:var(--text);font-family:var(--sans);line-height:1.7;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--violet);color:#08090f}
+  img{max-width:100%}
+
+  /* ── ambient aurora ── */
+  .bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+    background:radial-gradient(130% 100% at 50% -10%, #12142c 0%, var(--void2) 55%, var(--void) 100%)}
+  .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;mix-blend-mode:screen}
+  .b1{width:46vw;height:46vw;left:-6%;top:-8%;background:#7b5cff;animation:f1 24s ease-in-out infinite}
+  .b2{width:40vw;height:40vw;right:-4%;top:4%;background:#4f8bff;animation:f2 28s ease-in-out infinite}
+  .b3{width:52vw;height:52vw;left:26%;top:44%;background:#2fb6ac;animation:f3 26s ease-in-out infinite}
+  @keyframes f1{50%{transform:translate(8%,7%) scale(1.12)}}
+  @keyframes f2{50%{transform:translate(-7%,6%) scale(1.08)}}
+  @keyframes f3{50%{transform:translate(5%,-7%) scale(1.14)}}
+  #stars{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.6}
+  .veil{position:fixed;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(120% 90% at 50% 0%, transparent 45%, rgba(0,0,0,.55) 100%)}
+
+  .shell{position:relative;z-index:5}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+  /* ── nav ── */
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:40;transition:.3s;
+    backdrop-filter:blur(0px);border-bottom:1px solid transparent}
+  header.nav.scrolled{background:rgba(9,10,20,.72);backdrop-filter:blur(12px);border-bottom-color:var(--line)}
+  .nav-in{max-width:var(--max);margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.3px;color:var(--head)}
+  .brand .dot{width:12px;height:12px;border-radius:50%;
+    background:conic-gradient(from 0deg,var(--violet),var(--blue),var(--teal),var(--violet));box-shadow:var(--glow-v)}
+  .links{display:flex;align-items:center;gap:26px}
+  .links a{font-size:14.5px;color:var(--muted);transition:.2s;position:relative}
+  .links a:hover,.links a.active{color:var(--head)}
+  .links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;
+    background:linear-gradient(90deg,var(--violet),var(--blue))}
+  .nav-cta{font-size:13.5px;padding:9px 16px;border:1px solid var(--line);border-radius:30px;color:var(--head);transition:.2s}
+  .nav-cta:hover{border-color:transparent;background:linear-gradient(120deg,var(--violet),var(--blue));color:#08090f}
+  .burger{display:none;background:none;border:0;cursor:pointer;flex-direction:column;gap:5px;padding:6px}
+  .burger span{width:22px;height:2px;background:var(--head);border-radius:2px;transition:.25s}
+
+  /* ── hero ── */
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 90px}
+  .eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:4px;text-transform:uppercase;color:var(--blue)}
+  .hero h1{font-weight:200;font-size:clamp(44px,8.5vw,96px);line-height:1.02;margin:18px 0 0;letter-spacing:.5px;
+    color:var(--head);text-wrap:balance}
+  .hero h1 .grad{background:linear-gradient(100deg,#c9b6ff,#9fc3ff 40%,#9df0e4 75%,#c9b6ff);background-size:200% auto;
+    -webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 9s linear infinite}
+  @keyframes sheen{to{background-position:200% center}}
+  .hero .lead{max-width:620px;font-size:clamp(17px,2.4vw,20px);color:var(--text);margin-top:24px}
+  .hero .lead b{color:var(--head);font-weight:600}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px}
+  .btn{font-size:15px;padding:14px 26px;border-radius:40px;border:1px solid var(--line);background:var(--card);
+    color:var(--head);transition:.25s;cursor:pointer;display:inline-flex;align-items:center;gap:9px}
+  .btn.primary{border-color:transparent;background:linear-gradient(120deg,var(--violet),var(--blue));color:#08090f;font-weight:600}
+  .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+  .btn.primary:hover{box-shadow:0 16px 40px -12px rgba(167,139,250,.6)}
+  .hero-meta{display:flex;gap:34px;flex-wrap:wrap;margin-top:54px}
+  .hm{display:flex;flex-direction:column}
+  .hm b{font-weight:300;font-size:30px;color:var(--head);font-variant-numeric:tabular-nums;
+    background:linear-gradient(120deg,var(--violet),var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hm span{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:4px}
+  .scrolldown{margin-top:56px;font-family:var(--mono);font-size:12px;letter-spacing:3px;color:var(--muted);animation:bob 2.4s ease-in-out infinite}
+  @keyframes bob{50%{transform:translateY(7px)}}
+
+  /* ── sections ── */
+  section{padding:96px 0;position:relative}
+  .sec-head{margin-bottom:44px}
+  .sec-head .eyebrow{color:var(--violet)}
+  .sec-head h2{font-weight:300;font-size:clamp(28px,5vw,46px);margin:10px 0 0;color:var(--head);letter-spacing:.3px;text-wrap:balance}
+  .sec-head h2 b{font-weight:600}
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+  .glass{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}
+
+  /* about */
+  .about{display:grid;grid-template-columns:1.3fr .9fr;gap:26px;align-items:start}
+  .about p{font-size:17px;color:var(--text)}
+  .about p b{color:var(--head)}
+  .facts{padding:26px}
+  .facts .row{display:flex;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+  .facts .row:last-child{border-bottom:0}
+  .facts .k{color:var(--muted)}
+  .facts .v{color:var(--head);text-align:right}
+
+  /* flagship */
+  .flag{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+  .flag .ribbon{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:2px;
+    text-transform:uppercase;color:var(--violet);border:1px solid var(--line);border-radius:30px;padding:6px 14px;background:rgba(167,139,250,.07)}
+  .flag h3{font-weight:400;font-size:clamp(26px,4vw,36px);color:var(--head);margin:16px 0 12px;letter-spacing:.3px}
+  .flag p{font-size:16.5px;color:var(--text)}
+  .flag p b{color:var(--head)}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 26px}
+  .tag{font-size:12px;letter-spacing:.4px;color:#d5dbef;border:1px solid var(--line);border-radius:20px;padding:5px 12px;background:rgba(255,255,255,.02)}
+  /* console mock */
+  .console{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(180deg,#0d0f1e,#0a0b16);box-shadow:var(--shadow)}
+  .console .bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
+  .console .bar i{width:11px;height:11px;border-radius:50%;display:block}
+  .console .bar .t{margin-left:10px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .console .body{padding:18px;font-family:var(--mono);font-size:13px;line-height:1.9;min-height:250px}
+  .ln{display:block;white-space:pre-wrap;opacity:0;transform:translateY(4px);transition:opacity .35s,transform .35s}
+  .ln.show{opacity:1;transform:none}
+  .ln .role{color:var(--muted)}
+  .ln .v{color:var(--violet)} .ln .b{color:var(--blue)} .ln .g{color:var(--teal)}
+  .ln .ok{color:var(--teal)}
+  .cur{display:inline-block;width:7px;height:14px;background:var(--blue);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+
+  /* projects */
+  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}
+  .filter{font-size:13.5px;padding:9px 18px;border-radius:30px;border:1px solid var(--line);background:var(--card);
+    color:var(--muted);cursor:pointer;transition:.2s}
+  .filter:hover{color:var(--head)}
+  .filter.active{color:#08090f;border-color:transparent;background:linear-gradient(120deg,var(--violet),var(--blue));font-weight:600}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .pcard{padding:24px;position:relative;overflow:hidden;transition:transform .28s,background .28s,border-color .28s,opacity .3s;display:flex;flex-direction:column}
+  .pcard::before{content:"";position:absolute;left:0;top:0;height:3px;width:100%;
+    background:linear-gradient(90deg,var(--violet),var(--blue),var(--teal));opacity:0;transition:.28s}
+  .pcard:hover{transform:translateY(-6px);background:var(--card-hi);border-color:rgba(255,255,255,.18)}
+  .pcard:hover::before{opacity:1}
+  .pcard.hide{display:none}
+  .pcard .cat{font-family:var(--mono);font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+  .pcard h4{margin:8px 0 8px;font-size:19px;font-weight:600;color:var(--head);display:flex;align-items:center;gap:9px}
+  .pcard.star h4::after{content:"⭐ Flagship";font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--violet);
+    border:1px solid var(--line);border-radius:20px;padding:2px 8px;font-weight:400}
+  .pcard p{margin:0 0 16px;color:var(--muted);font-size:14.5px;flex:1}
+  .pcard .foot{display:flex;justify-content:space-between;align-items:center}
+  .pcard .ptags{display:flex;gap:6px;flex-wrap:wrap}
+  .pcard .ptag{font-size:10.5px;letter-spacing:.4px;color:#cdd3e6;border:1px solid var(--line);border-radius:16px;padding:2px 9px}
+  .pcard .go{color:var(--muted);transition:.28s}
+  .pcard:hover .go{color:var(--blue);transform:translateX(3px)}
+
+  /* skills */
+  .skills{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .sk{padding:24px}
+  .sk h4{margin:0 0 14px;font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--head);display:flex;align-items:center;gap:10px}
+  .sk .chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{font-size:13.5px;padding:8px 14px;border-radius:11px;border:1px solid var(--line);background:rgba(255,255,255,.02);
+    color:var(--text);transition:.18s}
+  .chip:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.2);color:var(--head)}
+
+  /* contact */
+  .contact{text-align:center;padding:70px 30px}
+  .contact h2{font-weight:200;font-size:clamp(30px,6vw,56px);color:var(--head);margin:0 0 8px;letter-spacing:.3px}
+  .contact h2 b{font-weight:600;background:linear-gradient(100deg,var(--violet),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .contact p{color:var(--muted);max-width:520px;margin:0 auto 30px;font-size:16.5px}
+  .socials{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+
+  footer{padding:40px 0 60px;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:40px}
+  footer .brand{justify-content:center;margin-bottom:10px}
+
+  @media(max-width:860px){
+    .about,.flag{grid-template-columns:1fr}
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .flag .console{order:2}
+  }
+  @media(max-width:640px){
+    .links{position:fixed;inset:64px 16px auto 16px;flex-direction:column;align-items:flex-start;gap:18px;
+      background:rgba(11,12,22,.96);border:1px solid var(--line);border-radius:18px;padding:22px;backdrop-filter:blur(14px);
+      transform:translateY(-12px);opacity:0;pointer-events:none;transition:.25s}
+    .links.open{transform:none;opacity:1;pointer-events:auto}
+    .burger{display:flex}
+    .nav-cta{display:none}
+    .grid,.skills{grid-template-columns:1fr}
+    .hero-meta{gap:26px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}#stars,.blob{display:none}
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Gourav Kumar Bathwal</h1>
-    <p>AI Analyst Intern • Full-Stack Developer • Blockchain & Web3</p>
-    <p class="contact">Email: bt23btech11008@iith.ac.in • Phone: +91 98351 33704</p>
-    <p class="links"><a href="https://github.com/Mr-Bathwal" target="_blank">GitHub</a> • <a href="https://www.linkedin.com/in/gourav-kumar-bathwal-16057430a/" target="_blank">LinkedIn</a></p>
+
+<div class="bg"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
+<canvas id="stars"></canvas>
+<div class="veil"></div>
+
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top"><span class="dot"></span> Gourav&nbsp;Bathwal</a>
+    <nav class="links" id="links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-cta" href="https://github.com/Mr-Bathwal" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="shell">
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <p class="eyebrow">Software Developer · AI &amp; Agents · UI/UX</p>
+    <h1>Hi, I'm <span class="grad">Gourav Bathwal</span>.<br/>I build agents that think.</h1>
+    <p class="lead">I build <b>AI agents that act on real systems</b> — and the blockchain &amp; interface work
+      that makes them feel effortless. From <b>India</b>, currently at IIT Hyderabad.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#work">View my work</a>
+      <a class="btn" href="./Gourav_Bathwal_Resume_WithPortfolio.pdf" target="_blank" rel="noopener">Résumé ↓</a>
+      <a class="btn" href="mailto:bt23btech11008@iith.ac.in">Get in touch</a>
+    </div>
+    <div class="hero-meta">
+      <div class="hm"><b data-to="14">0</b><span>Repositories</span></div>
+      <div class="hm"><b data-to="6">0</b><span>Languages</span></div>
+      <div class="hm"><b data-to="4">0</b><span>Focus domains</span></div>
+    </div>
+    <div class="scrolldown">↓ &nbsp; scroll to explore</div>
   </header>
 
-  <main>
-    <section id="about">
-      <h2>About</h2>
-      <p>AI Analyst Intern at EY building agentic AI systems with LangChain and LangGraph. Full-stack developer (React, Node.js, Next.js) and blockchain/Web3 builder. B.Tech at IIT Hyderabad. Strong in algorithms and competitive programming.</p>
-    </section>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="sec-head reveal">
+      <p class="eyebrow">01 — About</p>
+      <h2>A developer who likes the <b>hard, human</b> problems.</h2>
+    </div>
+    <div class="about">
+      <div class="reveal">
+        <p>I'm a software developer and UI/UX enthusiast working where <b>agentic AI</b>, <b>blockchain</b>,
+          and <b>thoughtful design</b> overlap. Lately that means building <b>Aurora Ops</b> — a console that lets
+          LLM agents diagnose and fix real infrastructure — and identity systems on-chain.</p>
+        <p>I care about the details most people scroll past: the loading state, the empty state, the moment an
+          interface makes something complex feel obvious. And yes — I do my best debugging at midnight, with chai.</p>
+      </div>
+      <div class="facts glass reveal">
+        <div class="row"><span class="k">Location</span><span class="v">India 🇮🇳</span></div>
+        <div class="row"><span class="k">Studies</span><span class="v">IIT Hyderabad</span></div>
+        <div class="row"><span class="k">Focus</span><span class="v">AI Agents · Web3</span></div>
+        <div class="row"><span class="k">Currently</span><span class="v">Building Aurora Ops</span></div>
+        <div class="row"><span class="k">Open to</span><span class="v">Collaboration</span></div>
+      </div>
+    </div>
+  </section>
 
-    <section id="projects">
-      <h2>Selected Projects</h2>
-      <ul>
-        <li><a href="https://github.com/Mr-Bathwal/Axiom-trade-pulse_Clone" target="_blank">Axiom Trade Pulse Clone</a> — Next.js, React, TypeScript, WebSockets, Tailwind.</li>
-        <li><a href="https://github.com/Mr-Bathwal/currency-converter" target="_blank">Currency Converter</a> — Real-time FX data, PWA features.</li>
-        <li><a href="https://github.com/Mr-Bathwal/Super-Calculator" target="_blank">Super-Calculator</a> — Advanced calculator SPA.</li>
-        <li><a href="https://github.com/Mr-Bathwal/CodeHub" target="_blank">CodeHub</a> — Online judge & compiler with multi-language support.</li>
-        <li><a href="https://github.com/Mr-Bathwal/Avalanche-Hacking" target="_blank">TicketVerse (NFT Ticketing)</a> — Avalanche chain, Solidity smart contracts.</li>
-        <li><a href="https://github.com/Mr-Bathwal/Algorand_DID" target="_blank">Decentralized Identity (DID) App</a> — Algorand, ZKPs, IPFS.</li>
-      </ul>
-    </section>
+  <!-- FLAGSHIP -->
+  <section id="flagship">
+    <div class="sec-head reveal">
+      <p class="eyebrow">02 — Flagship</p>
+      <h2>Aurora Ops — an <b>AI agent console</b> for real machines.</h2>
+    </div>
+    <div class="flag">
+      <div class="reveal">
+        <span class="ribbon">◆ Agentic AI</span>
+        <h3>Diagnose → reason → remediate</h3>
+        <p>A fleet of specialist <b>LLM agents</b> — health, logs, backup, auto-remediation — sit behind an
+          <b>orchestrator</b> that hears a symptom and routes it to the right one. Each agent runs its own tools on
+          your servers, then reports back in plain language. You watch the reasoning; you read the verdict.</p>
+        <div class="tags">
+          <span class="tag">LLM Agents</span><span class="tag">Multi-agent Orchestration</span><span class="tag">Tool-calling</span>
+          <span class="tag">Next.js 16</span><span class="tag">React 19</span><span class="tag">Three.js</span><span class="tag">TypeScript</span>
+        </div>
+        <a class="btn primary" href="https://github.com/Mr-Bathwal/aurora-ops-frontend" target="_blank" rel="noopener">Explore the repo ↗</a>
+      </div>
+      <div class="console reveal" id="console">
+        <div class="bar">
+          <i style="background:#ff6b6b"></i><i style="background:#ffd93d"></i><i style="background:#6bcf9f"></i>
+          <span class="t">aurora-ops · console</span>
+        </div>
+        <div class="body" id="trace"></div>
+      </div>
+    </div>
+  </section>
 
-    <section id="skills">
-      <h2>Skills</h2>
-      <p>LangChain, LangGraph, React, Next.js, Node.js, Express, Solidity, TensorFlow, Python, C++, Tailwind, MongoDB, Web3, ZKPs.</p>
-    </section>
+  <!-- WORK -->
+  <section id="work">
+    <div class="sec-head reveal">
+      <p class="eyebrow">03 — Selected work</p>
+      <h2>Things I've <b>designed &amp; shipped.</b></h2>
+    </div>
+    <div class="filters reveal" id="filters">
+      <button class="filter active" data-f="all">All</button>
+      <button class="filter" data-f="ai">AI &amp; Agents</button>
+      <button class="filter" data-f="blockchain">Blockchain</button>
+      <button class="filter" data-f="fullstack">Full-Stack</button>
+      <button class="filter" data-f="frontend">Frontend</button>
+    </div>
+    <div class="grid" id="grid"><!-- cards injected --></div>
+  </section>
 
-    <section id="resume">
-      <h2>Resume</h2>
-      <p>Download my resume: <a href="Gourav_Bathwal_Resume_WithPortfolio.pdf" download>PDF</a> | <a href="Gourav_Bathwal_Resume_WithPortfolio.txt">Text</a></p>
-    </section>
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="sec-head reveal">
+      <p class="eyebrow">04 — Toolbox</p>
+      <h2>What I <b>build with.</b></h2>
+    </div>
+    <div class="skills">
+      <div class="sk glass reveal"><h4>🤖 AI &amp; Agents</h4><div class="chips">
+        <span class="chip">LLM Agents</span><span class="chip">Orchestration</span><span class="chip">Tool-calling</span><span class="chip">Reasoning traces</span><span class="chip">Prompt design</span>
+      </div></div>
+      <div class="sk glass reveal"><h4>🧠 Languages</h4><div class="chips">
+        <span class="chip">C++</span><span class="chip">C</span><span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">Python</span><span class="chip">Solidity</span>
+      </div></div>
+      <div class="sk glass reveal"><h4>🎨 Frontend</h4><div class="chips">
+        <span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Three.js</span><span class="chip">Framer Motion</span><span class="chip">Tailwind</span><span class="chip">Figma</span>
+      </div></div>
+      <div class="sk glass reveal"><h4>⚙️ Backend &amp; Chain</h4><div class="chips">
+        <span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">MongoDB</span><span class="chip">Ethereum</span><span class="chip">Avalanche</span><span class="chip">Algorand</span>
+      </div></div>
+    </div>
+  </section>
 
-  </main>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact glass reveal">
+      <h2>Let's build <b>something.</b></h2>
+      <p>Have an idea in AI, Web3, or a product that needs a beautiful front end? My inbox is open.</p>
+      <div class="socials">
+        <a class="btn primary" href="mailto:bt23btech11008@iith.ac.in">Email me</a>
+        <a class="btn" href="./Gourav_Bathwal_Resume_WithPortfolio.pdf" target="_blank" rel="noopener">Résumé ↓</a>
+        <a class="btn" href="https://github.com/Mr-Bathwal" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="#">LinkedIn</a>
+        <a class="btn" href="#">LeetCode</a>
+      </div>
+    </div>
+  </section>
 
-  <footer>
-    <p>Built with ❤️ • <a href="https://github.com/Mr-Bathwal" target="_blank">GitHub</a></p>
-  </footer>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span> Gourav Bathwal</div>
+    <div>Designed &amp; built with chai ☕ · <span id="yr"></span></div>
+  </div>
+</footer>
+</div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* nav scrolled + mobile menu */
+  var nav=document.getElementById('nav'), links=document.getElementById('links'), burger=document.getElementById('burger');
+  addEventListener('scroll',function(){ nav.classList.toggle('scrolled', scrollY>24); });
+  burger.addEventListener('click',function(){ links.classList.toggle('open'); });
+  links.addEventListener('click',function(e){ if(e.target.tagName==='A') links.classList.remove('open'); });
+
+  /* starfield */
+  var cv=document.getElementById('stars'), ctx=cv.getContext('2d'), stars=[];
+  function resize(){ cv.width=innerWidth; cv.height=innerHeight;
+    stars=Array.from({length:Math.min(90,Math.floor(innerWidth/16))},function(){
+      return {x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*1.3+.3,
+        a:Math.random(),s:Math.random()*.02+.004}; }); }
+  resize(); addEventListener('resize',resize);
+  function tw(){ ctx.clearRect(0,0,cv.width,cv.height);
+    for(var i=0;i<stars.length;i++){var st=stars[i];st.a+=st.s;var o=(Math.sin(st.a)+1)/2*.8+.1;
+      ctx.beginPath();ctx.arc(st.x,st.y,st.r,0,7);ctx.fillStyle='rgba(200,214,255,'+o+')';ctx.fill();}
+    requestAnimationFrame(tw); }
+  if(!reduce) tw();
+
+  /* reveals + hero counters + nav active */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+  function count(el){var to=+el.getAttribute('data-to'),t0=null,d=1300;
+    if(reduce){el.textContent=to;return;}
+    requestAnimationFrame(function s(t){t0=t0||t;var p=Math.min(1,(t-t0)/d);
+      el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(s);});}
+  document.querySelectorAll('.hm b[data-to]').forEach(count);
+
+  /* nav active section */
+  var secs=['work','about','skills','contact'].map(function(id){return document.getElementById(id);});
+  var navlinks=[].slice.call(document.querySelectorAll('.links a[href^="#"]'));
+  var spy=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){var id=e.target.id;
+      navlinks.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+id);});}});},
+    {rootMargin:'-45% 0px -50% 0px'});
+  secs.forEach(function(s){if(s)spy.observe(s);});
+
+  /* projects */
+  var PROJECTS=[
+    {t:'Aurora Ops',cat:'ai',star:true,url:'https://github.com/Mr-Bathwal/aurora-ops-frontend',
+     d:'AI console orchestrating LLM agents that diagnose & remediate live servers.',tags:['Next.js','Three.js','LLM Agents']},
+    {t:'Algorand DID',cat:'blockchain',url:'https://github.com/Mr-Bathwal/Algorand_DID',
+     d:'A decentralized digital-identity (DID) app built on Algorand.',tags:['TypeScript','Algorand']},
+    {t:'Identity Verification dApp',cat:'blockchain',url:'https://github.com/Mr-Bathwal/identity-dapp',
+     d:'Decentralized identity verification using blockchain & Zero-Knowledge Proofs.',tags:['Solidity','ZK-Proofs']},
+    {t:'Decentralized Cert Verification',cat:'blockchain',url:'https://github.com/Mr-Bathwal/decentralized-cert-verification',
+     d:'Tamper-proof, verifiable certificates stored on the blockchain.',tags:['JavaScript','Web3']},
+    {t:'TicketVerse',cat:'blockchain',url:'https://github.com/Mr-Bathwal/Avalanche-Hacking',
+     d:'NFT-based event ticketing marketplace on the Avalanche chain.',tags:['Solidity','Avalanche','NFT']},
+    {t:'CodeHub',cat:'fullstack',url:'https://github.com/Mr-Bathwal/CodeHub',
+     d:'Online judge & compiler with multi-language support and state persistence.',tags:['Node.js','Express','MongoDB']},
+    {t:'Online Judge',cat:'fullstack',url:'https://github.com/Mr-Bathwal/OJ',
+     d:'A competitive-programming online-judge engine.',tags:['Full-Stack']},
+    {t:'TXodds WC',cat:'fullstack',url:'https://github.com/Mr-Bathwal/TXodds_WC',
+     d:'Sports odds & fixtures data application.',tags:['TypeScript']},
+    {t:'Super-Calculator',cat:'frontend',url:'https://github.com/Mr-Bathwal/Super-Calculator',
+     d:'Advanced calculator SPA for complex math & engineering problems.',tags:['React','JavaScript']},
+    {t:'Currency Converter',cat:'frontend',url:'https://github.com/Mr-Bathwal/currency-converter',
+     d:'Real-time currency converter with live FX data and PWA features.',tags:['JavaScript','PWA']},
+    {t:'WanderWise',cat:'frontend',url:'https://github.com/Mr-Bathwal/wanderwise',
+     d:'A trip-planning web experience.',tags:['HTML','JavaScript']},
+    {t:'Axiom Trade Pulse',cat:'frontend',url:'https://github.com/Mr-Bathwal/Axiom-trade-pulse_Clone',
+     d:'A trading-dashboard UI clone.',tags:['TypeScript']},
+    {t:'Therawin Prototype',cat:'frontend',url:'https://github.com/Mr-Bathwal/Therawin_prototype_design',
+     d:'Product prototype & visual design.',tags:['CSS','Design']}
+  ];
+  var CATLBL={ai:'AI & Agents',blockchain:'Blockchain',fullstack:'Full-Stack',frontend:'Frontend'};
+  var grid=document.getElementById('grid');
+  grid.innerHTML=PROJECTS.map(function(p){
+    return '<a class="pcard glass reveal'+(p.star?' star':'')+'" data-cat="'+p.cat+'" href="'+p.url+'" target="_blank" rel="noopener">'
+      +'<span class="cat">'+CATLBL[p.cat]+'</span>'
+      +'<h4>'+p.t+'</h4>'
+      +'<p>'+p.d+'</p>'
+      +'<div class="foot"><div class="ptags">'+p.tags.map(function(t){return '<span class="ptag">'+t+'</span>';}).join('')+'</div><span class="go">↗</span></div>'
+      +'</a>';
+  }).join('');
+  document.querySelectorAll('#grid .reveal').forEach(function(el){io.observe(el);});
+
+  /* filters */
+  document.getElementById('filters').addEventListener('click',function(e){
+    var b=e.target.closest('.filter'); if(!b) return;
+    document.querySelectorAll('.filter').forEach(function(f){f.classList.remove('active');});
+    b.classList.add('active');
+    var f=b.getAttribute('data-f');
+    document.querySelectorAll('.pcard').forEach(function(c){
+      c.classList.toggle('hide', f!=='all' && c.getAttribute('data-cat')!==f);
+    });
+  });
+
+  /* agent console reasoning trace */
+  var trace=document.getElementById('trace');
+  var LINES=[
+    '<span class="role">orchestrator</span> ▸ symptom: "disk filling on web-01"',
+    '<span class="role">routing</span> ▸ selecting specialist…',
+    '▸ <span class="v">health-agent</span> engaged',
+    '<span class="role">health-agent</span> ▸ tools: <span class="b">df -h · journalctl · top</span>',
+    '<span class="role">reasoning</span> ▸ /var/log growing ~2 GB/hr — runaway debug logs',
+    '<span class="role">verdict</span> ▸ rotate logs · cap level=info &nbsp;<span class="ok">✓ resolved</span>'
+  ];
+  function runTrace(){
+    trace.innerHTML=''; var i=0;
+    (function next(){
+      if(i>=LINES.length){ setTimeout(function(){ if(!reduce) runTrace(); }, 3600); return; }
+      var d=document.createElement('span'); d.className='ln'; d.innerHTML=LINES[i]+' <span class="cur"></span>';
+      var prev=trace.querySelector('.cur'); if(prev) prev.remove();
+      trace.appendChild(d);
+      requestAnimationFrame(function(){ d.classList.add('show'); });
+      i++; setTimeout(next, 620);
+    })();
+  }
+  if(reduce){ trace.innerHTML=LINES.map(function(l){return '<span class="ln show">'+l+'</span>';}).join(''); }
+  else {
+    var once=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){ runTrace(); once.disconnect(); }});},{threshold:.4});
+    once.observe(document.getElementById('console'));
+  }
+})();
+</script>
 </body>
 </html>

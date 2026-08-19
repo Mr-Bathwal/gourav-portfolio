@@ -1,40 +1,24 @@
-Gourav Kumar Bathwal — Portfolio
+# Gourav Bathwal — Portfolio
 
-Files:
-- index.html — static portfolio page
-- styles.css — styling
-- Gourav_Bathwal_Resume_WithPortfolio.pdf — your resume (copy)
-- Gourav_Bathwal_Resume_WithPortfolio.txt — plain text resume
-- .github/workflows/deploy.yml — GitHub Pages deployment workflow
-- .nojekyll — disables Jekyll processing on GitHub Pages
+**Live:** https://mr-bathwal.github.io/gourav-portfolio/
 
-## Quick Start
+An "Aurora"-themed personal portfolio — an animated hero, a live **Aurora Ops**
+agent-console demo, a filterable project grid, skills, and contact. It's a single
+self-contained `index.html` (inline CSS + JS, no build step, no dependencies),
+deployed to GitHub Pages automatically on every push to `main`.
 
-### Local Preview
-Open `index.html` in a browser to preview the site locally.
+## Files
+- `index.html` — the entire site (styles + script inlined)
+- `Gourav_Bathwal_Resume_WithPortfolio.pdf` — résumé, linked from the site
+- `Gourav_Bathwal_Resume_WithPortfolio.txt` — plain-text résumé
+- `.github/workflows/deploy.yml` — GitHub Pages deployment
+- `.nojekyll` — disables Jekyll processing
 
-### Deploy to GitHub Pages
+## Editing
+Everything is in `index.html`:
+- **Projects** — the `PROJECTS` array in the `<script>` near the bottom. Each entry is
+  `{ t: title, cat: 'ai'|'blockchain'|'fullstack'|'frontend', url, d: description, tags: [...] }`.
+- **Colors** — the CSS variables at the top (`--violet #A78BFA`, `--blue #60A5FA`, `--teal #5EEAD4`).
+- **Social links** — replace the `href="#"` placeholders (LinkedIn / LeetCode) in the Contact section.
 
-1. Create a new public repository named `gourav-portfolio` on GitHub (or any name you prefer).
-
-2. Initialize Git in this folder and push:
-```bash
-cd C:\Users\goura\Downloads\gourav-portfolio
-git init
-git add .
-git commit -m "Initial portfolio commit"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/gourav-portfolio.git
-git push -u origin main
-```
-
-3. Configure GitHub Pages:
-   - Go to your repository settings → Pages
-   - Select "Deploy from a branch"
-   - Choose `main` branch and `/ (root)` folder
-   - Save
-
-4. The site will be live at `https://YOUR_USERNAME.github.io/gourav-portfolio` once the workflow completes.
-
-Update the portfolio link in your resume after deployment: replace `https://example.com/gourav-portfolio` with your actual GitHub Pages URL.
-
+Preview locally by opening `index.html` in a browser.
