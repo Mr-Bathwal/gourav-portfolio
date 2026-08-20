@@ -137,12 +137,20 @@
   .filter:hover{color:var(--head)}
   .filter.active{color:#08090f;border-color:transparent;background:linear-gradient(120deg,var(--violet),var(--blue));font-weight:600}
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .pcard{padding:24px;position:relative;overflow:hidden;transition:transform .28s,background .28s,border-color .28s,opacity .3s;display:flex;flex-direction:column}
-  .pcard::before{content:"";position:absolute;left:0;top:0;height:3px;width:100%;
-    background:linear-gradient(90deg,var(--violet),var(--blue),var(--teal));opacity:0;transition:.28s}
+  .pcard{padding:0;position:relative;overflow:hidden;transition:transform .28s,background .28s,border-color .28s,opacity .3s;display:flex;flex-direction:column}
   .pcard:hover{transform:translateY(-6px);background:var(--card-hi);border-color:rgba(255,255,255,.18)}
-  .pcard:hover::before{opacity:1}
   .pcard.hide{display:none}
+  .pcover{height:116px;display:flex;align-items:center;justify-content:center;font-size:40px;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .pcover::after{content:"";position:absolute;inset:0;opacity:.6;
+    background:radial-gradient(120% 130% at 18% 0%, rgba(255,255,255,.14), transparent 55%),
+      repeating-linear-gradient(135deg, rgba(255,255,255,.045) 0 2px, transparent 2px 13px)}
+  .pcover .ico{position:relative;z-index:1;filter:drop-shadow(0 5px 16px rgba(0,0,0,.45));transition:transform .3s}
+  .pcard:hover .pcover .ico{transform:scale(1.12) rotate(-3deg)}
+  .pcover.ai{background:linear-gradient(135deg,#2c2a63,#20406e)}
+  .pcover.blockchain{background:linear-gradient(135deg,#1f3f6b,#1f5f63)}
+  .pcover.fullstack{background:linear-gradient(135deg,#2f2a63,#1f5560)}
+  .pcover.frontend{background:linear-gradient(135deg,#243a70,#2b6058)}
+  .pbody{padding:22px;display:flex;flex-direction:column;flex:1}
   .pcard .cat{font-family:var(--mono);font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
   .pcard h4{margin:8px 0 8px;font-size:19px;font-weight:600;color:var(--head);display:flex;align-items:center;gap:9px}
   .pcard.star h4::after{content:"⭐ Flagship";font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--violet);
@@ -398,41 +406,44 @@
 
   /* projects */
   var PROJECTS=[
-    {t:'Aurora Ops',cat:'ai',star:true,url:'https://github.com/Mr-Bathwal/aurora-ops-frontend',
+    {t:'Aurora Ops',cat:'ai',star:true,ico:'🤖',url:'https://github.com/Mr-Bathwal/aurora-ops-frontend',
      d:'AI console orchestrating LLM agents that diagnose & remediate live servers.',tags:['Next.js','Three.js','LLM Agents']},
-    {t:'Algorand DID',cat:'blockchain',url:'https://github.com/Mr-Bathwal/Algorand_DID',
+    {t:'Algorand DID',cat:'blockchain',ico:'🪪',url:'https://github.com/Mr-Bathwal/Algorand_DID',
      d:'A decentralized digital-identity (DID) app built on Algorand.',tags:['TypeScript','Algorand']},
-    {t:'Identity Verification dApp',cat:'blockchain',url:'https://github.com/Mr-Bathwal/identity-dapp',
+    {t:'Identity Verification dApp',cat:'blockchain',ico:'🔐',url:'https://github.com/Mr-Bathwal/identity-dapp',
      d:'Decentralized identity verification using blockchain & Zero-Knowledge Proofs.',tags:['Solidity','ZK-Proofs']},
-    {t:'Decentralized Cert Verification',cat:'blockchain',url:'https://github.com/Mr-Bathwal/decentralized-cert-verification',
+    {t:'Decentralized Cert Verification',cat:'blockchain',ico:'📜',url:'https://github.com/Mr-Bathwal/decentralized-cert-verification',
      d:'Tamper-proof, verifiable certificates stored on the blockchain.',tags:['JavaScript','Web3']},
-    {t:'TicketVerse',cat:'blockchain',url:'https://github.com/Mr-Bathwal/Avalanche-Hacking',
+    {t:'TicketVerse',cat:'blockchain',ico:'🎟️',url:'https://github.com/Mr-Bathwal/Avalanche-Hacking',
      d:'NFT-based event ticketing marketplace on the Avalanche chain.',tags:['Solidity','Avalanche','NFT']},
-    {t:'CodeHub',cat:'fullstack',url:'https://github.com/Mr-Bathwal/CodeHub',
+    {t:'CodeHub',cat:'fullstack',ico:'💻',url:'https://github.com/Mr-Bathwal/CodeHub',
      d:'Online judge & compiler with multi-language support and state persistence.',tags:['Node.js','Express','MongoDB']},
-    {t:'Online Judge',cat:'fullstack',url:'https://github.com/Mr-Bathwal/OJ',
+    {t:'Online Judge',cat:'fullstack',ico:'⚖️',url:'https://github.com/Mr-Bathwal/OJ',
      d:'A competitive-programming online-judge engine.',tags:['Full-Stack']},
-    {t:'TXodds WC',cat:'fullstack',url:'https://github.com/Mr-Bathwal/TXodds_WC',
+    {t:'TXodds WC',cat:'fullstack',ico:'📊',url:'https://github.com/Mr-Bathwal/TXodds_WC',
      d:'Sports odds & fixtures data application.',tags:['TypeScript']},
-    {t:'Super-Calculator',cat:'frontend',url:'https://github.com/Mr-Bathwal/Super-Calculator',
+    {t:'Super-Calculator',cat:'frontend',ico:'🧮',url:'https://github.com/Mr-Bathwal/Super-Calculator',
      d:'Advanced calculator SPA for complex math & engineering problems.',tags:['React','JavaScript']},
-    {t:'Currency Converter',cat:'frontend',url:'https://github.com/Mr-Bathwal/currency-converter',
+    {t:'Currency Converter',cat:'frontend',ico:'💱',url:'https://github.com/Mr-Bathwal/currency-converter',
      d:'Real-time currency converter with live FX data and PWA features.',tags:['JavaScript','PWA']},
-    {t:'WanderWise',cat:'frontend',url:'https://github.com/Mr-Bathwal/wanderwise',
+    {t:'WanderWise',cat:'frontend',ico:'🧭',url:'https://github.com/Mr-Bathwal/wanderwise',
      d:'A trip-planning web experience.',tags:['HTML','JavaScript']},
-    {t:'Axiom Trade Pulse',cat:'frontend',url:'https://github.com/Mr-Bathwal/Axiom-trade-pulse_Clone',
+    {t:'Axiom Trade Pulse',cat:'frontend',ico:'📈',url:'https://github.com/Mr-Bathwal/Axiom-trade-pulse_Clone',
      d:'A trading-dashboard UI clone.',tags:['TypeScript']},
-    {t:'Therawin Prototype',cat:'frontend',url:'https://github.com/Mr-Bathwal/Therawin_prototype_design',
+    {t:'Therawin Prototype',cat:'frontend',ico:'🎨',url:'https://github.com/Mr-Bathwal/Therawin_prototype_design',
      d:'Product prototype & visual design.',tags:['CSS','Design']}
   ];
   var CATLBL={ai:'AI & Agents',blockchain:'Blockchain',fullstack:'Full-Stack',frontend:'Frontend'};
   var grid=document.getElementById('grid');
   grid.innerHTML=PROJECTS.map(function(p){
     return '<a class="pcard glass reveal'+(p.star?' star':'')+'" data-cat="'+p.cat+'" href="'+p.url+'" target="_blank" rel="noopener">'
+      +'<div class="pcover '+p.cat+'"><span class="ico">'+p.ico+'</span></div>'
+      +'<div class="pbody">'
       +'<span class="cat">'+CATLBL[p.cat]+'</span>'
       +'<h4>'+p.t+'</h4>'
       +'<p>'+p.d+'</p>'
       +'<div class="foot"><div class="ptags">'+p.tags.map(function(t){return '<span class="ptag">'+t+'</span>';}).join('')+'</div><span class="go">↗</span></div>'
+      +'</div>'
       +'</a>';
   }).join('');
   document.querySelectorAll('#grid .reveal').forEach(function(el){io.observe(el);});
